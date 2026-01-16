@@ -1,7 +1,7 @@
 var map;
 var layerControl;
 
-// --- CONFIGURACIÓN DE CAPAS BASE ---
+// --- CAPAS BASE ---
 var calles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
@@ -19,8 +19,14 @@ function abrirMapa(tipo) {
 
 function cerrarMapa() { document.getElementById('modalMapa').style.display = 'none'; }
 
+// --- FUNCIÓN PARA DETERMINAR COLOR SEGÚN HABILITADOS ---
+function getColor(d) {
+    return d > 3000 ? '#7D6608' : // Bronce Oscuro (Muy importante)
+           d > 1000 ? '#D4AF37' : // Dorado Estándar (Normal)
+                      '#F7DC6F';  // Amarillo Claro (Menos carga)
+}
+
 function initMap() {
-    // Coordenadas Warnes
     map = L.map('map', {
         center: [-17.51, -63.16], 
         zoom: 13,
@@ -36,25 +42,38 @@ function initMap() {
         .then(data => {
             L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
-                    // CÁLCULO DE TAMAÑO DINÁMICO
-                    // Si tienes el dato 'Habilitados' en tu JSON, el círculo crece. Si no, tamaño fijo.
-                    var votos = feature.properties.Habilitados || 1000; 
-                    var radio = Math.sqrt(votos) * 0.35; // Factor de ajuste
-                    radio = Math.max(radio, 7); // Tamaño mínimo 7px
+                    var votos = feature.properties.Habilitados || 500; 
+                    
+                    // 1. Tamaño según votos
+                    var radio = Math.sqrt(votos) * 0.35; 
+                    radio = Math.max(radio, 8); // Mínimo 8px
+
+                    // 2. Color según votos
+                    var colorRelleno = getColor(votos);
 
                     return L.circleMarker(latlng, {
                         radius: radio,
-                        fillColor: "#D4AF37", // Dorado
-                        color: "#fff",
+                        fillColor: colorRelleno, 
+                        color: "#fff", // Borde blanco
                         weight: 2,
                         opacity: 1,
-                        fillOpacity: 0.8
+                        fillOpacity: 0.85
                     });
                 },
                 onEachFeature: function (feature, layer) {
                     var p = feature.properties;
 
-                    // 1. GENERAR HTML DE LAS MESAS (Si existen en el JSON)
+                    // LÓGICA WHATSAPP
+                    // Limpiamos el número para quitar espacios o guiones y agregamos el código de país
+                    var waLink = "#";
+                    var waClass = "disabled";
+                    if (p.Contacto_Jefe) {
+                        var cleanPhone = p.Contacto_Jefe.toString().replace(/\D/g,''); // Solo deja números
+                        waLink = `https://wa.me/591${cleanPhone}`;
+                        waClass = "";
+                    }
+
+                    // HTML DE MESAS
                     var htmlMesas = "";
                     if (p.Lista_Mesas && Array.isArray(p.Lista_Mesas)) {
                         htmlMesas = `<ul class="mesas-list">`;
@@ -62,35 +81,34 @@ function initMap() {
                             htmlMesas += `
                                 <li class="mesa-item">
                                     <span class="mesa-header">MESA ${m.mesa}</span>
-                                    <span class="mesa-delegate">👤 ${m.delegado || "Sin asignar"}</span>
-                                    <div class="mesa-details">
-                                        <span>📞 ${m.cel || "--"}</span>
+                                    <div style="display:flex; justify-content:space-between; font-size:11px;">
+                                        <span>👤 ${m.delegado || "Sin asignar"}</span>
                                         <span>🆔 ${m.carnet || "--"}</span>
-                                        <span>🎂 ${m.fnac || "--"}</span>
+                                    </div>
+                                    <div style="font-size:10px; color:#666; margin-top:2px;">
+                                        📞 ${m.cel || "--"} | 🎂 ${m.fnac || "--"}
                                     </div>
                                 </li>`;
                         });
                         htmlMesas += `</ul>`;
                     } else {
-                        htmlMesas = `<p style="font-size:11px; color:#999; text-align:center;">No hay delegados registrados aún.</p>`;
+                        htmlMesas = `<p style="font-size:12px; color:#999; text-align:center; padding:10px;">No hay delegados registrados aún.</p>`;
                     }
 
-                    // 2. CONSTRUIR POPUP SUPERIOR
+                    // CONSTRUIR POPUP (FICHA TÉCNICA)
                     var contenido = `
                         <div class="info-card">
                             <div class="card-header">
                                 <h3>${p.NombreReci}</h3>
-                                <span class="sub-header">${p.AsientoEle || "Warnes"}</span>
+                                <span class="sub-header">ASIENTO ELECTORAL: ${p.AsientoEle || "Warnes"}</span>
                             </div>
                             
                             <div class="card-body">
                                 <div class="location-box">
                                     <strong>UBICACIÓN:</strong><br>
                                     ${p.NomDist || ""} - ${p.NomZona || ""}<br>
-                                    ${p.Direccion || ""}
+                                    <span style="font-style:italic; font-size:11px;">${p.Direccion || ""}</span>
                                 </div>
-
-                                <div class="separator"></div>
 
                                 <div class="stats-grid">
                                     <div class="stat-item">
@@ -99,7 +117,7 @@ function initMap() {
                                     </div>
                                     <div class="stat-item">
                                         <span class="stat-label">Recinto Nº</span>
-                                        <span class="stat-value">${p.Nro_Recinto || p.Reci}</span>
+                                        <span class="stat-value">${p.Nro_Recinto || "-"}</span>
                                     </div>
                                     <div class="stat-item">
                                         <span class="stat-label">Mesas</span>
@@ -107,46 +125,45 @@ function initMap() {
                                     </div>
                                     <div class="stat-item">
                                         <span class="stat-label">Habilitados</span>
-                                        <span class="stat-value">${p.Habilitados || 0}</span>
+                                        <span class="stat-value" style="color:${getColor(p.Habilitados)}">${p.Habilitados || 0}</span>
                                     </div>
                                 </div>
                                 
-                                <div style="text-align:center; font-size:10px; margin-bottom:10px;">
-                                    <strong>Impacto:</strong> ${p.Porcentaje || "0%"} del padrón
+                                <div style="text-align:center; font-size:11px; margin-bottom:15px; color:#555;">
+                                    <strong>Impacto:</strong> ${p.Porcentaje || "0%"} del padrón de Warnes
                                 </div>
 
                                 <div class="boss-box">
-                                    <span class="boss-title">Jefe de Recinto</span>
-                                    <span class="boss-name">${p.Jefe_Recinto || "VACANTE"}</span>
-                                    <a href="tel:${p.Contacto_Jefe}" class="boss-phone">📞 ${p.Contacto_Jefe || "--"}</a>
+                                    <div style="font-size:10px; text-transform:uppercase; font-weight:700;">Jefe de Recinto</div>
+                                    <div style="font-size:14px; font-weight:700; margin:5px 0;">${p.Jefe_Recinto || "VACANTE"}</div>
+                                    
+                                    <a href="${waLink}" target="_blank" class="boss-phone" 
+                                       style="${!p.Contacto_Jefe ? 'background:#ccc; pointer-events:none;' : ''}">
+                                       <span style="margin-right:5px;">💬</span>
+                                       ${p.Contacto_Jefe ? 'WhatsApp: ' + p.Contacto_Jefe : 'Sin Contacto'}
+                                    </a>
                                 </div>
 
                                 <div class="separator"></div>
-                                <h4 style="margin:0 0 10px; font-size:12px; text-transform:uppercase;">Detalle Mesas</h4>
+                                
+                                <div style="background:#333; color:#D4AF37; padding:5px 10px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">
+                                    Detalle Mesas: ${p.NombreReci}
+                                </div>
+                                
                                 ${htmlMesas}
                             </div>
                         </div>
                     `;
 
-                    layer.bindPopup(contenido, { maxWidth: 320 });
+                    // bindPopup sin opciones de ancho fijo, porque lo controlamos con CSS (.info-card)
+                    layer.bindPopup(contenido);
                     
-                    // Tooltip hover
                     layer.bindTooltip(`<b>${p.NombreReci}</b>`, {
                         direction: 'top', className: 'my-tooltip', offset: [0, -10]
                     });
                 }
             }).addTo(map);
         });
-
-    // --- LÍMITES / FRONTERA ---
-    // Si consigues el archivo 'limite_warnes.geojson', usa este bloque:
-    /*
-    fetch('data/limite_warnes.geojson').then(r => r.json()).then(data => {
-        L.geoJSON(data, { 
-            style: { color: '#ff0000', weight: 2, fill: false, dashArray: '5, 5' } 
-        }).addTo(map);
-    });
-    */
 }
 
 document.addEventListener('keydown', function(event) {

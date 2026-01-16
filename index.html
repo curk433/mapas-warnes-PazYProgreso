@@ -6,30 +6,39 @@
     <title>Portal de Campaña - Warnes</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <div class="bg-overlay"></div>
+
     <header class="main-header">
-        <div class="logo-area">
-            <h1>PAZ Y PROGRESO</h1> <p>INFORMACIÓN DE CAMPAÑA - WARNES</p>
+        <div class="header-content">
+            <div class="brand-line"></div>
+            <h1>PAZ Y PROGRESO</h1>
+            <p class="subtitle">ESTRATEGIA & DATOS • WARNES 2025</p>
         </div>
     </header>
 
     <main class="container">
         <div class="grid-menu">
             <div class="menu-card" onclick="abrirMapa('electoral')">
+                <div class="card-decoration"></div>
                 <div class="icon-map">🗳️</div>
                 <h3>Recintos Electorales</h3>
-                <p>Ver distribución de votación y ubicaciones.</p>
-                <button class="btn-action">Abrir Mapa</button>
+                <p>Análisis geoespacial de votación, logística y delegados.</p>
+                <button class="btn-action">ACCEDER AL MAPA</button>
             </div>
 
             <div class="menu-card disabled">
                 <div class="icon-map">📍</div>
                 <h3>Rutas de Campaña</h3>
-                <p>Próximamente</p>
+                <p>Planificación territorial (Próximamente)</p>
             </div>
         </div>
     </main>
@@ -37,7 +46,7 @@
     <div id="modalMapa" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="tituloMapa">Mapa Interactivo</h2>
+                <h2 id="tituloMapa">MAPA DE UBICACIONES Y ESTADÍSTICAS - WARNES</h2>
                 <span class="close-btn" onclick="cerrarMapa()">&times;</span>
             </div>
             <div class="map-container">
