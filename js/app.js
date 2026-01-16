@@ -1,15 +1,8 @@
 var map;
-var layerControl;
+var searchIndex = []; // Aquí guardaremos los datos para buscar
 
-// --- CAPAS BASE ---
-var calles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-});
-
-var satelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles © Esri'
-});
+var calles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+var satelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles © Esri' });
 
 function abrirMapa(tipo) {
     document.getElementById('modalMapa').style.display = 'block';
@@ -19,153 +12,180 @@ function abrirMapa(tipo) {
 
 function cerrarMapa() { document.getElementById('modalMapa').style.display = 'none'; }
 
-// --- FUNCIÓN PARA DETERMINAR COLOR SEGÚN HABILITADOS ---
 function getColor(d) {
-    return d > 3000 ? '#7D6608' : // Bronce Oscuro (Muy importante)
-           d > 1000 ? '#D4AF37' : // Dorado Estándar (Normal)
-                      '#F7DC6F';  // Amarillo Claro (Menos carga)
+    return d > 3000 ? '#7D6608' : d > 1000 ? '#D4AF37' : '#F7DC6F';
 }
 
 function initMap() {
-    map = L.map('map', {
-        center: [-17.51, -63.16], 
-        zoom: 13,
-        layers: [calles] 
-    });
+    map = L.map('map', { center: [-17.51, -63.16], zoom: 13, layers: [calles] });
+    L.control.layers({ "Mapa Vial": calles, "Satélite": satelite }).addTo(map);
 
-    var baseMaps = { "Mapa Vial": calles, "Satélite": satelite };
-    L.control.layers(baseMaps).addTo(map);
-
-    // --- CARGAR DATOS ---
     fetch('data/recintos_warnes.geojson')
         .then(response => response.json())
         .then(data => {
+            // Limpiamos el índice de búsqueda antes de cargar
+            searchIndex = [];
+
             L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
                     var votos = feature.properties.Habilitados || 500; 
-                    
-                    // 1. Tamaño según votos
-                    var radio = Math.sqrt(votos) * 0.35; 
-                    radio = Math.max(radio, 8); // Mínimo 8px
-
-                    // 2. Color según votos
-                    var colorRelleno = getColor(votos);
+                    var radio = Math.sqrt(votos) * 0.28; 
+                    radio = Math.max(radio, 7); 
+                    radio = Math.min(radio, 20); 
 
                     return L.circleMarker(latlng, {
                         radius: radio,
-                        fillColor: colorRelleno, 
-                        color: "#fff", // Borde blanco
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.85
+                        fillColor: getColor(votos), 
+                        color: "#fff", weight: 1.5, opacity: 1, fillOpacity: 0.9
                     });
                 },
                 onEachFeature: function (feature, layer) {
                     var p = feature.properties;
+                    
+                    // --- 1. INDEXAR DATOS PARA EL BUSCADOR ---
+                    // Guardamos referencia a este recinto para buscarlo luego
+                    searchIndex.push({
+                        nombre: p.NombreReci,
+                        jefe: p.Jefe_Recinto || "",
+                        mesas: p.Lista_Mesas || [],
+                        layer: layer // Guardamos el objeto del mapa para poder abrirlo
+                    });
 
-                    // LÓGICA WHATSAPP
-                    // Limpiamos el número para quitar espacios o guiones y agregamos el código de país
-                    var waLink = "#";
-                    var waClass = "disabled";
-                    if (p.Contacto_Jefe) {
-                        var cleanPhone = p.Contacto_Jefe.toString().replace(/\D/g,''); // Solo deja números
-                        waLink = `https://wa.me/591${cleanPhone}`;
-                        waClass = "";
-                    }
-
-                    // HTML DE MESAS
+                    // --- 2. CONTENIDO DEL POPUP (Igual que antes) ---
+                    var waLink = p.Contacto_Jefe ? `https://wa.me/591${p.Contacto_Jefe.toString().replace(/\D/g,'')}` : "#";
                     var htmlMesas = "";
+                    
                     if (p.Lista_Mesas && Array.isArray(p.Lista_Mesas)) {
                         htmlMesas = `<ul class="mesas-list">`;
                         p.Lista_Mesas.forEach(m => {
                             htmlMesas += `
                                 <li class="mesa-item">
                                     <span class="mesa-header">MESA ${m.mesa}</span>
-                                    <div style="display:flex; justify-content:space-between; font-size:11px;">
-                                        <span>👤 ${m.delegado || "Sin asignar"}</span>
-                                        <span>🆔 ${m.carnet || "--"}</span>
+                                    <div class="mesa-row">
+                                        <div class="mesa-col-delegado">👤 ${m.delegado || "Sin asignar"}</div>
+                                        <div class="mesa-col-id">🆔 ${m.carnet || "--"}</div>
                                     </div>
-                                    <div style="font-size:10px; color:#666; margin-top:2px;">
-                                        📞 ${m.cel || "--"} | 🎂 ${m.fnac || "--"}
+                                    <div class="mesa-info-extra">
+                                        <span>📞 ${m.cel || "--"}</span>
+                                        <span>🎂 ${m.fnac || "--"}</span>
                                     </div>
                                 </li>`;
                         });
                         htmlMesas += `</ul>`;
                     } else {
-                        htmlMesas = `<p style="font-size:12px; color:#999; text-align:center; padding:10px;">No hay delegados registrados aún.</p>`;
+                        htmlMesas = `<p style="font-size:13px; color:#777; text-align:center; padding:15px;">No hay delegados registrados aún.</p>`;
                     }
 
-                    // CONSTRUIR POPUP (FICHA TÉCNICA)
                     var contenido = `
                         <div class="info-card">
                             <div class="card-header">
                                 <h3>${p.NombreReci}</h3>
-                                <span class="sub-header">ASIENTO ELECTORAL: ${p.AsientoEle || "Warnes"}</span>
+                                <span class="sub-header">ASIENTO: ${p.AsientoEle || "WARNES"}</span>
                             </div>
-                            
                             <div class="card-body">
                                 <div class="location-box">
                                     <strong>UBICACIÓN:</strong><br>
                                     ${p.NomDist || ""} - ${p.NomZona || ""}<br>
-                                    <span style="font-style:italic; font-size:11px;">${p.Direccion || ""}</span>
+                                    <span style="font-style:italic; font-size:13px; color:#444;">${p.Direccion || ""}</span>
                                 </div>
-
                                 <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Grupo</span>
-                                        <span class="stat-value">${p.Grupo || "-"}</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Recinto Nº</span>
-                                        <span class="stat-value">${p.Nro_Recinto || "-"}</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Mesas</span>
-                                        <span class="stat-value">${p.Cantidad_Mesas || "?"}</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Habilitados</span>
-                                        <span class="stat-value" style="color:${getColor(p.Habilitados)}">${p.Habilitados || 0}</span>
-                                    </div>
+                                    <div class="stat-item"><span class="stat-label">Grupo</span><span class="stat-value">${p.Grupo || "-"}</span></div>
+                                    <div class="stat-item"><span class="stat-label">Recinto Nº</span><span class="stat-value">${p.Nro_Recinto || "-"}</span></div>
+                                    <div class="stat-item"><span class="stat-label">Mesas</span><span class="stat-value">${p.Cantidad_Mesas || "?"}</span></div>
+                                    <div class="stat-item"><span class="stat-label">Habilitados</span><span class="stat-value" style="color:${getColor(p.Habilitados)}">${p.Habilitados || 0}</span></div>
                                 </div>
-                                
-                                <div style="text-align:center; font-size:11px; margin-bottom:15px; color:#555;">
+                                <div style="text-align:center; font-size:13px; margin-bottom:20px; color:#333;">
                                     <strong>Impacto:</strong> ${p.Porcentaje || "0%"} del padrón de Warnes
                                 </div>
-
                                 <div class="boss-box">
-                                    <div style="font-size:10px; text-transform:uppercase; font-weight:700;">Jefe de Recinto</div>
-                                    <div style="font-size:14px; font-weight:700; margin:5px 0;">${p.Jefe_Recinto || "VACANTE"}</div>
-                                    
-                                    <a href="${waLink}" target="_blank" class="boss-phone" 
-                                       style="${!p.Contacto_Jefe ? 'background:#ccc; pointer-events:none;' : ''}">
-                                       <span style="margin-right:5px;">💬</span>
-                                       ${p.Contacto_Jefe ? 'WhatsApp: ' + p.Contacto_Jefe : 'Sin Contacto'}
+                                    <div style="font-size:11px; text-transform:uppercase; font-weight:800; color:#555;">Jefe de Recinto</div>
+                                    <div style="font-size:16px; font-weight:900; margin:8px 0; color:#000;">${p.Jefe_Recinto || "VACANTE"}</div>
+                                    <a href="${waLink}" target="_blank" class="boss-phone" style="${!p.Contacto_Jefe ? 'background:#ccc; pointer-events:none;' : ''}">
+                                       <span style="margin-right:5px;">💬</span> ${p.Contacto_Jefe || 'Sin Contacto'}
                                     </a>
                                 </div>
-
                                 <div class="separator"></div>
-                                
-                                <div style="background:#333; color:#D4AF37; padding:5px 10px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">
+                                <div style="background:#222; color:#D4AF37; padding:8px 15px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px;">
                                     Detalle Mesas: ${p.NombreReci}
                                 </div>
-                                
                                 ${htmlMesas}
                             </div>
-                        </div>
-                    `;
+                        </div>`;
 
-                    // bindPopup sin opciones de ancho fijo, porque lo controlamos con CSS (.info-card)
                     layer.bindPopup(contenido);
-                    
-                    layer.bindTooltip(`<b>${p.NombreReci}</b>`, {
-                        direction: 'top', className: 'my-tooltip', offset: [0, -10]
-                    });
+                    layer.bindTooltip(`<b>${p.NombreReci}</b>`, { direction: 'top', className: 'my-tooltip', offset: [0, -10] });
                 }
             }).addTo(map);
         });
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") cerrarMapa();
+// --- LÓGICA DEL BUSCADOR ---
+const inputBuscador = document.getElementById('inputBuscador');
+const listaResultados = document.getElementById('listaResultados');
+const iconClear = document.querySelector('.clear-icon');
+
+inputBuscador.addEventListener('input', function(e) {
+    const texto = e.target.value.toLowerCase();
+    listaResultados.innerHTML = ''; // Limpiar
+    
+    if (texto.length < 2) {
+        listaResultados.style.display = 'none';
+        iconClear.style.display = 'none';
+        return;
+    }
+
+    iconClear.style.display = 'block';
+    
+    // Filtrar resultados
+    const resultados = searchIndex.filter(item => {
+        // Buscar en nombre recinto
+        if (item.nombre && item.nombre.toLowerCase().includes(texto)) return true;
+        // Buscar en nombre jefe
+        if (item.jefe && item.jefe.toLowerCase().includes(texto)) return true;
+        // Buscar en delegados
+        if (item.mesas.some(m => m.delegado && m.delegado.toLowerCase().includes(texto))) return true;
+        return false;
+    });
+
+    if (resultados.length > 0) {
+        listaResultados.style.display = 'block';
+        resultados.forEach(res => {
+            // Determinar qué coincidió para mostrarlo
+            let extraInfo = "Recinto Electoral";
+            if (res.jefe.toLowerCase().includes(texto)) extraInfo = `Jefe: ${res.jefe}`;
+            
+            // Si coincide delegado, mostrar cuál
+            const delegadoEncontrado = res.mesas.find(m => m.delegado && m.delegado.toLowerCase().includes(texto));
+            if (delegadoEncontrado) extraInfo = `Delegado Mesa ${delegadoEncontrado.mesa}: ${delegadoEncontrado.delegado}`;
+
+            const div = document.createElement('div');
+            div.className = 'result-item';
+            div.innerHTML = `
+                <span class="res-nombre">${res.nombre}</span>
+                <span class="res-detalle">${extraInfo}</span>
+            `;
+            
+            div.onclick = function() {
+                // VOLAR AL LUGAR
+                map.flyTo(res.layer.getLatLng(), 16, { duration: 1.5 });
+                // ABRIR POPUP
+                res.layer.openPopup();
+                // Limpiar buscador
+                listaResultados.style.display = 'none';
+            };
+            
+            listaResultados.appendChild(div);
+        });
+    } else {
+        listaResultados.style.display = 'none';
+    }
 });
+
+function limpiarBusqueda() {
+    inputBuscador.value = '';
+    listaResultados.style.display = 'none';
+    iconClear.style.display = 'none';
+    inputBuscador.focus();
+}
+
+document.addEventListener('keydown', function(event) { if (event.key === "Escape") cerrarMapa(); });

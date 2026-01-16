@@ -6,12 +6,11 @@
     <title>Portal de Campaña - Warnes</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +20,7 @@
         <div class="header-content">
             <div class="brand-line"></div>
             <h1>PAZ Y PROGRESO</h1>
-            <p class="subtitle">ESTRATEGIA & DATOS • WARNES 2025</p>
+            <p class="subtitle">ESTRATEGIA Y DATOS • WARNES 2026</p>
         </div>
     </header>
 
@@ -50,6 +49,15 @@
                 <span class="close-btn" onclick="cerrarMapa()">&times;</span>
             </div>
             <div class="map-container">
+                <div class="search-widget">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="inputBuscador" placeholder="Buscar Recinto, Jefe o Delegado..." autocomplete="off">
+                        <i class="fas fa-times clear-icon" onclick="limpiarBusqueda()" style="display:none;"></i>
+                    </div>
+                    <div id="listaResultados" class="search-results"></div>
+                </div>
+
                 <div id="map"></div>
             </div>
         </div>
