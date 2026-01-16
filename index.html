@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Campaña - Warnes</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-area">
+            <h1>PAZ Y PROGRESO</h1> <p>INFORMACIÓN DE CAMPAÑA - WARNES</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="grid-menu">
+            <div class="menu-card" onclick="abrirMapa('electoral')">
+                <div class="icon-map">🗳️</div>
+                <h3>Recintos Electorales</h3>
+                <p>Ver distribución de votación y ubicaciones.</p>
+                <button class="btn-action">Abrir Mapa</button>
+            </div>
+
+            <div class="menu-card disabled">
+                <div class="icon-map">📍</div>
+                <h3>Rutas de Campaña</h3>
+                <p>Próximamente</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="modalMapa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tituloMapa">Mapa Interactivo</h2>
+                <span class="close-btn" onclick="cerrarMapa()">&times;</span>
+            </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
