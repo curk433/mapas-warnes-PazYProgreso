@@ -1,42 +1,271 @@
 {
-"type": "FeatureCollection",
-"name": "recintos_warnes",
-"features": [
-{ "type": "Feature", "properties": { "FID": 4624, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 25000, "NombreReci": "U.E. Ignacio Warnes", "NomDist": "DISTRITO 2", "NomZona": "Zona 5329", "Direccion": "Warnes Pirai Entre Delmira Cuellar y Rev. Jose Molina", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.512943, "longitud": -63.172938, "Grupo": "G1", "Nro_Recinto": 1, "Cantidad_Mesas": 34, "Habilitados": 8116, "Porcentaje": "7,84%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 11, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 12, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 13, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 14, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 15, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 16, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 17, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 18, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 19, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 20, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 21, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 22, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 23, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 24, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 25, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 26, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 27, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 28, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 29, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 30, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 31, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 32, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 33, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 34, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.172938, -17.512943 ] } },
+  "type": "FeatureCollection",
+  "name": "recintos_warnes",
+  "features": [
 
-{ "type": "Feature", "properties": { "FID": 4623, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 5001, "NombreReci": "Esc. Colegio Julia Said", "NomDist": "DISTRITO 1", "NomZona": "Zona 5333", "Direccion": "Warnes", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.512132, "longitud": -63.164069, "Grupo": "G1", "Nro_Recinto": 2, "Cantidad_Mesas": 25, "Habilitados": 5955, "Porcentaje": "5,57%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 11, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 12, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 13, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 14, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 15, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 16, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 17, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 18, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 19, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 20, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 21, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 22, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 23, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 24, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 25, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.164069, -17.512132 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4624,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 25000,
+        "NombreReci": "U.E. Ignacio Warnes",
+        "NomDist": "DISTRITO 2",
+        "NomZona": "Zona 5329",
+        "Direccion": "Warnes Pirai Entre Delmira Cuellar y Rev. Jose Molina",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.512943,
+        "longitud": -63.172938,
+        "Grupo": "G1",
+        "Nro_Recinto": 1,
+        "Cantidad_Mesas": 34,
+        "Habilitados": 8000,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "IGNACIO W.",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": [
+          { "mesa": 2, "delegado": "MARLENE ROSARIO ALVARADO", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 7, "delegado": "SELVA SORAIDA CHARI LOPEZ", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 9, "delegado": "JUANITA CUELLAR VACA", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 10, "delegado": "ROY ROSENDO ORTEGA DIAS", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 10, "delegado": "ESTHER ESCALANTE PEÑA", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 11, "delegado": "DONALD ESPINOZA JORDAN", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 14, "delegado": "LUCY HURTADO CAMPOS", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 16, "delegado": "EMILIA FATIMA LOPEZ", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 22, "delegado": "CLAIDA NETSAY PARADA ARIAS", "cel": "73609191", "carnet": "", "fnac": "" },
+          { "mesa": 27, "delegado": "SILVIA SALAZAR CASANOVA", "cel": "75635144", "carnet": "", "fnac": "" },
+          { "mesa": 27, "delegado": "PURA JOVITA SALAZAR CASANOVA", "cel": "77697888", "carnet": "", "fnac": "" },
+          { "mesa": 28, "delegado": "ROGER SANCHEZ PARADA", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 33, "delegado": "JUANA MIRTHA VEIZAGA BRAVO", "cel": "", "carnet": "", "fnac": "" }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.172938, -17.512943]
+      }
+    },
 
-{ "type": "Feature", "properties": { "FID": 4625, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 25002, "NombreReci": "Esc. Col. Constantino Cuellar", "NomDist": "DISTRITO 1", "NomZona": "Zona 5333", "Direccion": "Warnes", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.506498, "longitud": -63.164066, "Grupo": "G1", "Nro_Recinto": 3, "Cantidad_Mesas": 21, "Habilitados": 4833, "Porcentaje": "4,52%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 11, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 12, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 13, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 14, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 15, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 16, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 17, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 18, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 19, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 20, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 21, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.164066, -17.506498 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4623,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 5001,
+        "NombreReci": "Esc. Colegio Julia Said",
+        "NomDist": "DISTRITO 1",
+        "NomZona": "Zona 5333",
+        "Direccion": "Warnes",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.512132,
+        "longitud": -63.164069,
+        "Grupo": "G1",
+        "Nro_Recinto": 2,
+        "Cantidad_Mesas": 25,
+        "Habilitados": 6000,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "LEILA / ALVARO",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": [
+          { "mesa": 1, "delegado": "MARLIN ALVAREZ JUSTINIANO", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 3, "delegado": "LORENA IBANA BALCAZAR LEON", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 14, "delegado": "GUILLERMO MATIENZO ALVAREZ", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 16, "delegado": "TERESA PADILLA JUSTINIANO", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 19, "delegado": "PAOLA VERONICA RIBERA AIREYU", "cel": "", "carnet": "", "fnac": "" }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.164069, -17.512132]
+      }
+    },
 
-{ "type": "Feature", "properties": { "FID": 4626, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 25003, "NombreReci": "Esc. El Jipa", "NomDist": "DISTRITO 1", "NomZona": "Zona 5333", "Direccion": "Warnes", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.509196, "longitud": -63.150359, "Grupo": "G1", "Nro_Recinto": 4, "Cantidad_Mesas": 11, "Habilitados": 2485, "Porcentaje": "2,32%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
-  {"mesa": 11, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.150359, -17.509196 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4625,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 25002,
+        "NombreReci": "Esc. Col. Constantino Cuellar",
+        "NomDist": "DISTRITO 1",
+        "NomZona": "Zona 5333",
+        "Direccion": "Warnes",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.506498,
+        "longitud": -63.164066,
+        "Grupo": "G1",
+        "Nro_Recinto": 3,
+        "Cantidad_Mesas": 21,
+        "Habilitados": 4800,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "LOLITA",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": [
+          { "mesa": 10, "delegado": "YUDY LIJERON ALBA", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 13, "delegado": "VICITACION PARADA MORENO", "cel": "", "carnet": "", "fnac": "" },
+          { "mesa": 14, "delegado": "EDDY SOLANGE PEREZ HURTADO", "cel": "", "carnet": "", "fnac": "" }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.164066, -17.506498]
+      }
+    },
 
-{ "type": "Feature", "properties": { "FID": 4631, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 25676, "NombreReci": "U.E. Emilio Finot", "NomDist": "DISTRITO 1", "NomZona": "Zona 5333", "Direccion": "Casco Viejo Warnes, Calle Bolivar y Heroes del Chaco", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.508165, "longitud": -63.166374, "Grupo": "G1", "Nro_Recinto": 5, "Cantidad_Mesas": 10, "Habilitados": 2323, "Porcentaje": "2,17%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.166374, -17.508165 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4626,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 25003,
+        "NombreReci": "Esc. El Jipa",
+        "NomDist": "DISTRITO 1",
+        "NomZona": "Zona 5333",
+        "Direccion": "Warnes",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.509196,
+        "longitud": -63.150359,
+        "Grupo": "G1",
+        "Nro_Recinto": 4,
+        "Cantidad_Mesas": 11,
+        "Habilitados": 2500,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "MAURICIO",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": [
+          { "mesa": 7, "delegado": "EFRAIN PEREZ BALTAZAR", "cel": "", "carnet": "", "fnac": "" }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.150359, -17.509196]
+      }
+    },
 
-{ "type": "Feature", "properties": { "FID": 4627, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 25004, "NombreReci": " U.E. Elvira Castedo Vda. de Jordán", "NomDist": "DISTRITO 1", "NomZona": "Zona 5333", "Direccion": "Warnes", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.504683, "longitud": -63.158486, "Grupo": "G1", "Nro_Recinto": 6, "Cantidad_Mesas": 5, "Habilitados": 1208, "Porcentaje": "1,13%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.158486, -17.504683 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4631,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 25676,
+        "NombreReci": "U.E. Emilio Finot",
+        "NomDist": "DISTRITO 1",
+        "NomZona": "Zona 5333",
+        "Direccion": "Casco Viejo Warnes",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.508165,
+        "longitud": -63.166374,
+        "Grupo": "G1",
+        "Nro_Recinto": 5,
+        "Cantidad_Mesas": 10,
+        "Habilitados": 2300,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "PILAR MARGOT MONTERO JUSTINIANO",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": [
+          { "mesa": 6, "delegado": "PILAR MARGOT MONTERO JUSTINIANO", "cel": "", "carnet": "", "fnac": "" }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.166374, -17.508165]
+      }
+    },
 
-{ "type": "Feature", "properties": { "FID": 4632, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 2265, "AsientoEle": "Warnes", "Reci": 26378, "NombreReci": "U.E. Melchor Pinto Parada", "NomDist": "DISTRITO 2", "NomZona": "Zona 5329", "Direccion": "Circunvalacion oeste / Barrio villa del Carmen", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.520305, "longitud": -63.167765, "Grupo": "G1", "Nro_Recinto": 7, "Cantidad_Mesas": 3, "Habilitados": 675, "Porcentaje": "0,63%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
-  {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}
-] }, "geometry": { "type": "Point", "coordinates": [ -63.167765, -17.520305 ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4627,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 25004,
+        "NombreReci": "U.E. Elvira Castedo Vda. de Jordán",
+        "NomDist": "DISTRITO 1",
+        "NomZona": "Zona 5333",
+        "Direccion": "Warnes",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.504683,
+        "longitud": -63.158486,
+        "Grupo": "G1",
+        "Nro_Recinto": 6,
+        "Cantidad_Mesas": 5,
+        "Habilitados": 1200,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "ORLANDO",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.158486, -17.504683]
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4632,
+        "NomDep": "Santa Cruz",
+        "NomProv": "Warnes",
+        "NombreMuni": "Warnes",
+        "IdLoc": 2265,
+        "AsientoEle": "Warnes",
+        "Reci": 26378,
+        "NombreReci": "U.E. Melchor Pinto Parada",
+        "NomDist": "DISTRITO 2",
+        "NomZona": "Zona 5329",
+        "Direccion": "Circunvalación Oeste",
+        "NroCircun": 52,
+        "TipoCircun": "Uninominal",
+        "NomCircun": "Quincuagésimo Segunda-Santa Cruz",
+        "latitud": -17.520305,
+        "longitud": -63.167765,
+        "Grupo": "G1",
+        "Nro_Recinto": 7,
+        "Cantidad_Mesas": 3,
+        "Habilitados": 700,
+        "Porcentaje": "26%",
+        "Jefe_Recinto": "JONAS",
+        "Contacto_Jefe": "",
+        "Lista_Mesas": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-63.167765, -17.520305] } },
 
 { "type": "Feature", "properties": { "FID": 4652, "NomDep": "Santa Cruz", "NomProv": "Warnes", "NombreMuni": "Warnes", "IdLoc": 3538, "AsientoEle": "Satélite Norte", "Reci": 1, "NombreReci": "Esc. Ciudad Satelite Norte", "NomDist": "DISTRITO 3", "NomZona": "Zona 5328", "Direccion": "Satélite Norte", "NroCircun": 52, "TipoCircun": "Uninominal", "NomCircun": "Quincuagésimo Segunda-Santa Cruz", "latitud": -17.60657, "longitud": -63.14571, "Grupo": "G2", "Nro_Recinto": 8, "Cantidad_Mesas": 34, "Habilitados": 8024, "Porcentaje": "7,50%", "Jefe_Recinto": "", "Contacto_Jefe": "", "Lista_Mesas": [
   {"mesa": 1, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 2, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 3, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 4, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 5, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 6, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 7, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 8, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 9, "delegado": "", "cel": "", "carnet": "", "fnac": ""}, {"mesa": 10, "delegado": "", "cel": "", "carnet": "", "fnac": ""},
