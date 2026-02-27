@@ -76,6 +76,15 @@ function initMap() {
                         htmlMesas = `<p style="font-size:13px; color:#777; text-align:center; padding:15px;">No hay delegados registrados aún.</p>`;
                     }
 
+                    var mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${p.latitud},${p.longitud}`;
+var mapsButton = `
+    <div style="text-align:center; margin:18px 0;">
+        <a href="${mapsLink}" target="_blank" class="maps-btn">
+            <span style="margin-right:6px;">🗺️</span> Cómo llegar con Google Maps
+        </a>
+    </div>
+`;
+
                     var contenido = `
                         <div class="info-card">
                             <div class="card-header">
@@ -88,6 +97,7 @@ function initMap() {
                                     ${p.NomDist || ""} - ${p.NomZona || ""}<br>
                                     <span style="font-style:italic; font-size:13px; color:#444;">${p.Direccion || ""}</span>
                                 </div>
+                                ${mapsButton}
                                 <div class="stats-grid">
                                     <div class="stat-item"><span class="stat-label">Grupo</span><span class="stat-value">${p.Grupo || "-"}</span></div>
                                     <div class="stat-item"><span class="stat-label">Recinto Nº</span><span class="stat-value">${p.Nro_Recinto || "-"}</span></div>
