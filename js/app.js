@@ -86,44 +86,53 @@ var mapsButton = `
 `;
 
                     var contenido = `
-                        <div class="info-card">
-                            <div class="card-header">
-                                <h3>${p.NombreReci}</h3>
-                                <span class="sub-header">ASIENTO: ${p.AsientoEle || "WARNES"}</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="location-box">
-                                    <strong>UBICACIÓN:</strong><br>
-                                    ${p.NomDist || ""} - ${p.NomZona || ""}<br>
-                                    <span style="font-style:italic; font-size:13px; color:#444;">${p.Direccion || ""}</span>
-                                </div>
-                                ${mapsButton}
-                                <div class="stats-grid">
-                                    <div class="stat-item"><span class="stat-label">Grupo</span><span class="stat-value">${p.Grupo || "-"}</span></div>
-                                    <div class="stat-item"><span class="stat-label">Recinto Nº</span><span class="stat-value">${p.Nro_Recinto || "-"}</span></div>
-                                    <div class="stat-item"><span class="stat-label">Mesas</span><span class="stat-value">${p.Cantidad_Mesas || "?"}</span></div>
-                                    <div class="stat-item"><span class="stat-label">Habilitados</span><span class="stat-value" style="color:${getColor(p.Habilitados)}">${p.Habilitados || 0}</span></div>
-                                </div>
-                                <div style="text-align:center; font-size:13px; margin-bottom:20px; color:#333;">
-                                    <strong>Impacto:</strong> ${p.Porcentaje || "0%"} del padrón de Warnes
-                                </div>
-                                <div class="boss-box">
-                                    <div style="font-size:11px; text-transform:uppercase; font-weight:800; color:#555;">Jefe de Recinto</div>
-                                    <div style="font-size:16px; font-weight:900; margin:8px 0; color:#000;">${p.Jefe_Recinto || "VACANTE"}</div>
-                                    <a href="${waLink}" target="_blank" class="boss-phone" style="${!p.Contacto_Jefe ? 'background:#ccc; pointer-events:none;' : ''}">
-                                       <span style="margin-right:5px;">💬</span> ${p.Contacto_Jefe || 'Sin Contacto'}
-                                    </a>
-                                </div>
-                                <div class="separator"></div>
-                                <div style="background:#222; color:#D4AF37; padding:8px 15px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px;">
-                                    Detalle Mesas: ${p.NombreReci}
-                                </div>
-                                ${htmlMesas}
-                            </div>
-                        </div>`;
+    <div class="info-card">
+        <button class="close-popup-btn" style="position:absolute;top:10px;right:10px;font-size:22px;background:none;border:none;color:#D4AF37;z-index:10;cursor:pointer;">&times;</button>
+        <div class="card-header">
+            <h3>${p.NombreReci}</h3>
+            <span class="sub-header">ASIENTO: ${p.AsientoEle || "WARNES"}</span>
+        </div>
+        <div class="card-body">
+            <div class="location-box">
+                <strong>UBICACIÓN:</strong><br>
+                ${p.NomDist || ""} - ${p.NomZona || ""}<br>
+                <span style="font-style:italic; font-size:13px; color:#444;">${p.Direccion || ""}</span>
+            </div>
+            ${mapsButton}
+            <div class="stats-grid">
+                <div class="stat-item"><span class="stat-label">Grupo</span><span class="stat-value">${p.Grupo || "-"}</span></div>
+                <div class="stat-item"><span class="stat-label">Recinto Nº</span><span class="stat-value">${p.Nro_Recinto || "-"}</span></div>
+                <div class="stat-item"><span class="stat-label">Mesas</span><span class="stat-value">${p.Cantidad_Mesas || "?"}</span></div>
+                <div class="stat-item"><span class="stat-label">Habilitados</span><span class="stat-value" style="color:${getColor(p.Habilitados)}">${p.Habilitados || 0}</span></div>
+            </div>
+            <div style="text-align:center; font-size:13px; margin-bottom:20px; color:#333;">
+                <strong>Impacto:</strong> ${p.Porcentaje || "0%"} del padrón de Warnes
+            </div>
+            <div class="boss-box">
+                <div style="font-size:11px; text-transform:uppercase; font-weight:800; color:#555;">Jefe de Recinto</div>
+                <div style="font-size:16px; font-weight:900; margin:8px 0; color:#000;">${p.Jefe_Recinto || "VACANTE"}</div>
+                <a href="${waLink}" target="_blank" class="boss-phone" style="${!p.Contacto_Jefe ? 'background:#ccc; pointer-events:none;' : ''}">
+                   <span style="margin-right:5px;">💬</span> ${p.Contacto_Jefe || 'Sin Contacto'}
+                </a>
+            </div>
+            <div class="separator"></div>
+            <div style="background:#222; color:#D4AF37; padding:8px 15px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px;">
+                Detalle Mesas: ${p.NombreReci}
+            </div>
+            ${htmlMesas}
+        </div>
+    </div>`;
 
                     layer.bindPopup(contenido);
                     layer.bindTooltip(`<b>${p.NombreReci}</b>`, { direction: 'top', className: 'my-tooltip', offset: [0, -10] });
+                    layer.on('popupopen', function(e) {
+                        var btn = document.querySelector('.close-popup-btn');
+                        if (btn) {
+                            btn.onclick = function() {
+                                map.closePopup();
+                            };
+                        }
+                    });
                 }
             }).addTo(map);
         });
