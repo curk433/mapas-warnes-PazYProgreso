@@ -146,6 +146,7 @@ body {
     resize: both; overflow: auto; background: #fff;
     display: flex; flex-direction: column;
     border: 1px solid #999;
+    position: relative; /* Para posicionar la X */
 }
 
 .card-header {
@@ -208,10 +209,10 @@ body {
         box-shadow: 0 8px 30px rgba(0,0,0,0.4);
     }
     .search-widget {
-        left: 5px;
-        right: 5px;
-        width: 98vw;
-        top: 5px;
+        top: 70px; /* Mueve la barra de búsqueda hacia abajo */
+        left: 10px;
+        right: 10px;
+        width: auto;
     }
     .modal-content {
         width: 100vw !important;
@@ -222,6 +223,9 @@ body {
     .map-container {
         height: 100vh !important;
         min-height: 100vh !important;
+    }
+    .leaflet-top, .leaflet-control {
+        margin-top: 70px !important; /* Mueve los controles de Leaflet hacia abajo */
     }
 }
 
@@ -311,6 +315,30 @@ body {
     transition: background 0.2s;
 }
 .maps-btn:hover {
+    background: var(--gold-dark);
+    color: #fff;
+}
+.popup-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 9999;
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    background: var(--gold-primary);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.popup-close-btn:hover {
     background: var(--gold-dark);
     color: #fff;
 }

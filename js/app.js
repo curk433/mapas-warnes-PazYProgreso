@@ -87,7 +87,7 @@ var mapsButton = `
 
                     var contenido = `
     <div class="info-card">
-        <button class="close-popup-btn" style="position:absolute;top:10px;right:10px;font-size:22px;background:none;border:none;color:#D4AF37;z-index:10;cursor:pointer;">&times;</button>
+        <span class="popup-close-btn" onclick="window.closeLeafletPopup && window.closeLeafletPopup();">&times;</span>
         <div class="card-header">
             <h3>${p.NombreReci}</h3>
             <span class="sub-header">ASIENTO: ${p.AsientoEle || "WARNES"}</span>
@@ -208,3 +208,6 @@ function limpiarBusqueda() {
 }
 
 document.addEventListener('keydown', function(event) { if (event.key === "Escape") cerrarMapa(); });
+window.closeLeafletPopup = function() {
+    if (map) map.closePopup();
+};
