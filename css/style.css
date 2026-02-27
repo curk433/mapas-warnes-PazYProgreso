@@ -105,6 +105,28 @@ body {
     border-bottom: 5px solid var(--gold-primary);
 }
 .modal-header h2 { font-size: 1.4rem; letter-spacing: 2px; }
+.close-btn {
+    font-size: 48px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+    background: rgba(0,0,0,0.25);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    user-select: none;
+}
+.close-btn:hover {
+    background: var(--gold-primary);
+    color: #fff;
+    border-color: var(--gold-dark);
+}
 .close-btn { font-size: 40px; color: #fff; cursor: pointer; }
 .close-btn:hover { color: var(--gold-primary); }
 .map-container { flex-grow: 1; position: relative; }
